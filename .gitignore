@@ -1,0 +1,8 @@
+
+*.komodoproject
+
+test
+
+*.o
+
+*.so
