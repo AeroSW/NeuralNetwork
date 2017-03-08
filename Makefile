@@ -4,17 +4,22 @@ EXE		= test
 EFLAGS	= $(CC) -std=c++11 -o $(EXE)
 
 INC		= ./include ./include/transfer-functions
-LIBPATH	= -L./lib/tfuncs
+LIBPATH	= -L./lib
+
+TPATH	= ./obj/tests
 
 default	: c_all
 
 c_all	:
 	cd lib && $(MAKE)
-	cd obj && $(MAKE) tests
+	cd obj && $(MAKE) testfiles
 	
 clean	:
 	cd lib && $(MAKE) clean
 	cd obj && $(MAKE) clean
 	
 tfunc_test	:
-	$(EFLAGS) $(LIBPATH) -ltfuncs
+	$(EFLAGS) $(TPATH)/FunctionTest.o $(LIBPATH) -lAeroSW
+	
+matrix_test	:
+	$(EFLAGS) $(TPATH)/MatrixTest.o $(LIBPATH) -lAeroSW -fopenmp

@@ -8,8 +8,14 @@ MPATH	= ../../src/tests
 IPATH	= ../../include
 ITFPATH	= ../../include/transfer-functions
 TFPATH	= ../../src/transfer-functions
-FILES	= FunctionTest.o
+FILES	= FunctionTest.o MatrixTest.o
 default	:	$(FILES)
 
 FunctionTest.o	: $(ITFPATH)/FunctionHandler.h $(MPATH)/FunctionTest.cpp
 	$(CFLAGS) $(MPATH)/FunctionTest.cpp
+	
+MatrixTest.o	: $(IPATH)/Matrix.h $(IPATH)/TypeDefs.h $(MPATH)/MatrixTest.cpp
+	$(CFLAGS) $(MPATH)/MatrixTest.cpp
+	
+clean	:
+	$(RM) *.o
