@@ -4,6 +4,6 @@
 typedef unsigned char uint8;
 typedef unsigned short uint16;
 typedef unsigned int uint;
-typedef unsigned long long ulong;
+typedef unsigned long int ulong;
 
 #endif
