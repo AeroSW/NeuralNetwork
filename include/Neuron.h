@@ -9,6 +9,7 @@
 #include "TypeDefs.h"
 #include "TransferFunction.h"
 
+namespace AeroSW{
 //!	neuron class
 /*!	\class neuron
  *	\brief An object which acts similar to a neuron in the brain.
@@ -26,6 +27,8 @@ class neuron{
 							weights will be stroed as a column vector.
 		transfer_function * function; //! The function which will determine the action being taken.
 		double value; //! The value which the result of the function will be stored.
+		double diffs; //! The differential value.
+		double summs; //! The summations used to get value.
 		const std::string type = "neuron";
 		
 	public:
@@ -65,7 +68,12 @@ class neuron{
 		virtual double feed(matrix &mat);
 		//!	A function which returns the function's derivative's result.
 		/*!
+		 *	This function returns the derivative function's value with the same inputs
+		 *	given to feed.
 		 *
+		 *	\param	void
+		 *	\return	A double value from running the derivative of this neuron's function.
+		 *	\sa		feed(matrix &mat)
 		 */
 		virtual double invert();
 		
@@ -78,6 +86,28 @@ class neuron{
 		 *	\sa		neuron
 		 */
 		virtual double get_bias();
+		
+		//!	A function to retrieve the current differential value.
+		/*!
+		 *	The function returns the current differential value.  The value
+		 *	returned is the value retrieved when invert() was called.
+		 *
+		 *	\param	void
+		 *	\return	double	The value obtained from invert().
+		 *	\sa		invert()
+		 */
+		virtual double get_diff();
+		
+		//!	A function which returns the neuron's current value.
+		/*!
+		 *	The function returns the value of this neuron obtained from
+		 *	feed().
+		 *
+		 *	\param	void
+		 *	\return	double	The value this neuron possesses from feed().
+		 *	\sa		feed(matrix &mat)
+		 */
+		virtual double get_value();
 		
 		//!	A function to retrieve an input's weight.
 		/*!
@@ -108,6 +138,17 @@ class neuron{
 		 *	\return	void
 		 */
 		virtual void set_bias(double b);
+		
+		//!	A function which sets the value to the given value.
+		/*!
+		 *	A function which allows the value to be set to a specific
+		 *	value passed into the function.  It is useful for when you
+		 *	are needing to set input node values for the neural network.
+		 *
+		 *	\param	v	The value this neuron instance should represent.
+		 *	\return	void
+		 */
+		virtual void set_value(double v);
 		
 		//!	A function allowing the setting of a weight based on input index.
 		/*!
@@ -170,5 +211,5 @@ class neuron{
 		
 		neuron& operator=(const neuron &node);
 };
-
+}
 #endif
