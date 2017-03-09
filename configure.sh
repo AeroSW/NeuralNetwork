@@ -1,5 +1,6 @@
 #!/bin/sh
 
-export LD_LIBRARY_PATH=./lib:LD_LIBRARY_PATH
 make clean
 make
+clear
+export LD_LIBRARY_PATH=./lib:LD_LIBRARY_PATH

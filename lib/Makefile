@@ -8,7 +8,7 @@ LFLAG	= $(CC) -std=c++11 -shared -fPIC
 LFILE	= libAeroSW.so
 VFILE	= libAeroSW.so.0.0.2
 
-NNET	= $(OPATH)/Matrix.o
+NNET	= $(OPATH)/Matrix.o $(OPATH)/Neuron.o
 TFUNCS	= $(OTFPATH)/FunctionHandler.o $(OTFPATH)/HyperbolicTangentFunction.o $(OTFPATH)/SigmoidFunction.o
 
 DEPEND	= $(TFUNCS) $(NNET)
@@ -28,6 +28,9 @@ $(OTFPATH)/SigmoidFunction.o	:
 	cd ../obj && $(MAKE) tfuncs
 
 $(OPATH)/Matrix.o	:
+	cd ../obj && $(MAKE) objs
+	
+$(OPATH)/Neuron.o	:
 	cd ../obj && $(MAKE) objs
 	
 clean	:

@@ -23,3 +23,6 @@ tfunc_test	:
 	
 matrix_test	:
 	$(EFLAGS) $(TPATH)/MatrixTest.o $(LIBPATH) -lAeroSW -fopenmp
+	
+neuron_test	:
+	$(EFLAGS) $(TPATH)/NeuronTest.o $(LIBPATH) -lAeroSW -fopenmp

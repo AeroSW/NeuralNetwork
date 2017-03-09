@@ -10,7 +10,7 @@ CFLAGS	= $(CC) -std=c++11 $(HEADERS) -fopenmp -c -fPIC
 MPATH	= ../src
 TFPATH	= ../src/transfer-functions
 
-FILES	= Matrix.o
+FILES	= Matrix.o Neuron.o
 
 default	: tfuncs tests objs
 
@@ -24,6 +24,9 @@ objs	: $(FILES)
 
 Matrix.o	:	$(MPATH)/Matrix.cpp $(IPATH)/TypeDefs.h
 	$(CFLAGS) -o Matrix.o $(MPATH)/Matrix.cpp
+	
+Neuron.o	:	$(MPATH)/Neuron.cpp $(IPATH)/Neuron.h
+	$(CFLAGS) -o Neuron.o $(MPATH)/Neuron.cpp
 	
 clean		:
 	$(RM) *.o
