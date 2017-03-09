@@ -5,11 +5,9 @@
 #include "FunctionHandler.h"
 
 #include <string>
-#include <memory>
 #include "Matrix.h"
 #include "TypeDefs.h"
 #include "TransferFunction.h"
-#include "FunctionHandler.h"
 
 //!	neuron class
 /*!	\class neuron
@@ -24,9 +22,11 @@
 class neuron{
 	private:
 		double bias; //! bias represents the latent bias in your thought process.
-		matrix weights; //! weights which will determine how strong each input feeding into your thoughts.
+		matrix weights; //!	weights which will determine how strong each input feeding into your thoughts.\
+							weights will be stroed as a column vector.
 		transfer_function * function; //! The function which will determine the action being taken.
 		double value; //! The value which the result of the function will be stored.
+		const std::string type = "neuron";
 		
 	public:
 		//!	Constructor
@@ -143,11 +143,11 @@ class neuron{
 		 *	The matrix must be either a column or row vector.  The position in the
 		 *	matrix will correspond to the inputs they will be applied to.
 		 *
-		 *	\param	matr	The matrix containing the weights you wish to set the values to.
+		 *	\param	mat	The matrix containing the weights you wish to set the values to.
 		 *	\return	void
 		 *	\exception	neuron_weight_error	An error adjusting the weights occurred.
 		 */
-		virtual void set_weights(matrix &matr);
+		virtual void set_weights(matrix &mat);
 		
 		//!	A function which returns the number of inputs for this neuron instance.
 		/*!
@@ -158,6 +158,17 @@ class neuron{
 		 *	\return	uint	The number of inputs.
 		 */
 		virtual uint num_inputs();
+		
+		//!	A function which will return the type of this object.
+		/*!
+		 *	A function which returns the object type as a string.
+		 *
+		 *	\param	void
+		 *	\return The object's type as a string.
+		 */
+		virtual std::string get_type();
+		
+		neuron& operator=(const neuron &node);
 };
 
 #endif
