@@ -76,8 +76,8 @@ class sigmoid : public transfer_function{
 		 *	The function used is the Logistic Sigmoid Function, denoted logsig:
 		 *		logsig(val) = (1 / (1 + e^(-val)))
 		 *		
-		 *	\param	double val
-		 *	\return	double result
+		 *	\param	val	The value to be passed into the function.
+		 *	\return	double The result for passing val into the function.
 		 */
 		virtual double function(double val);
 		
@@ -89,8 +89,8 @@ class sigmoid : public transfer_function{
 		 *	The derivative of the Logistic Sigmoid Function, denoted logsig`:
 		 *		logsig`(val) = (logsig(val))*(1-logsig(val))
 		 *
-		 *	\param	double val
-		 *	\return double result
+		 *	\param	val	The value to be passed into the function
+		 *	\return double result of the function
 		 */
 		virtual double function_derivative(double val);
 		
