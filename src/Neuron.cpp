@@ -95,7 +95,7 @@ std::string neuron::get_type(){
 	return type;
 }
 
-neuron& neuron::operator=(const neuron & node){
+neuron& neuron::operator=(const neuron &node){
 	bias = node.bias;
 	weights = node.weights;
 	function->deref();
