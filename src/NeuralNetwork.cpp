@@ -35,15 +35,34 @@ matrix neural_network::feed(matrix &inputs){
 	}
 	for(uint al = 1; al < num_layers; al++){
 		uint start = 0;
-		for(uint cx = 0; cx < al; cx++) start=structure[cx];
+		for(uint cx = 0; cx < al-1; cx++) start += structure[cx];
 		uint end = start + structure[al];
-		double * inputs_array = new double[structure[al]];
+		double * inputs_array = new double[structure[al-1]];
 		for(uint cx = start; cx < end; cx++){
 			inputs_array[cx - start] = neurons[cx].get_value();
 		}
 		matrix input(1, structure[al], inputs_array);
 		delete[] inputs_array;
-		input_start = 0;
+		start = 0;
+		for(uint cx = 0; cx < al; cx++) start += structure[cx];
+		if(al != num_layers-1){
+			end = start + structure[al+1];
+		}
+		else{
+			end = neurons.size();
+		}
+		for(uint cx = start; cx < end; cx++){
+			neurons[cx]->feed(input);
+		}
 	}
+	uint start = 0;
+	for(uint cx = 0; cx < num_layers; cx++) start += structure[cx];
+	uint end = neurons.size();
+	uint num_outputs = structure[num_layers-1];
+	matrix output(num_outputs, 1);
+	for(uint cx = start; cx < end; cx++){
+		output.set_elem(cx-start, neurons[start].get_value());
+	}
+	return output;
 }
 
